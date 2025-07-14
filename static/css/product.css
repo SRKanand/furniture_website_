@@ -1,0 +1,186 @@
+/* Reset & base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f5f7fa;
+  color: #333;
+  padding: 20px 40px;
+  min-height: 100vh;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Navigation styling */
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+nav ul li {
+  cursor: pointer;
+  padding: 12px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #555;
+  border-radius: 30px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul li:hover {
+  color: #0a74da;
+  border-color: #0a74da;
+  box-shadow: 0 4px 15px rgba(10,116,218,0.4);
+  transform: scale(1.05);
+}
+
+nav ul li.active, nav ul li[style*="background-color: rgb(0, 0, 0)"] {
+  background-color: #0a74da !important;
+  color: #fff !important;
+  border-color: #0a74da !important;
+  box-shadow: 0 6px 20px rgba(10,116,218,0.6);
+  transform: scale(1.1);
+}
+
+/* Section titles */
+.category h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #0a74da;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Sub nav inside category */
+.category nav ul {
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.category nav ul li {
+  background-color: #0a74da;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(10,116,218,0.5);
+}
+
+/* Items grid container */
+.items {
+  display: inline-block;
+  width: 260px;
+  margin: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  vertical-align: top;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* On hover scale up and shadow */
+.items:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(10,116,218,0.3);
+}
+
+/* Images styling */
+.items img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 2px solid #0a74da;
+  transition: transform 0.4s ease;
+}
+
+.items:hover img {
+  transform: scale(1.05);
+}
+
+/* Price styling */
+.items h4 {
+  font-weight: 700;
+  color: #0a74da;
+  font-size: 1.2rem;
+  margin: 15px 0 10px 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Button styling */
+.items button {
+  display: block;
+  width: 90%;
+  margin: 0 auto 20px auto;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #0a74da;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(10,116,218,0.6);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.items button:hover {
+  background-color: #064a9b;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  body {
+    padding: 15px 20px;
+  }
+  .items {
+    width: 220px;
+    margin: 12px;
+  }
+  nav ul {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul li {
+    margin-bottom: 10px;
+    width: 80%;
+    text-align: center;
+  }
+  .items {
+    width: 90%;
+    margin: 15px auto;
+  }
+}

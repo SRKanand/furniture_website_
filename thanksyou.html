@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thank-you-card {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      color: white;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .thank-you-card h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .thank-you-card p {
+      font-size: 1.2em;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      background: #ffffff;
+      color: #a18cd1;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #f0e6ff;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-card">
+    <h1>Thank You! 💜</h1>
+    <p>Your submission has been received successfully. We appreciate your time and trust!</p>
+    <button class="back-btn" onclick="goHome()">Go to Homepage</button>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "index.html"; // change to your homepage path
+    }
+  </script>
+</body>
+</html>

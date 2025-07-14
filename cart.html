@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Furniture Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+
+    .cart {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 30px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .item-name {
+      font-size: 18px;
+      color: #333;
+      flex: 1;
+    }
+
+    .price {
+      width: 80px;
+      text-align: right;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+    }
+
+    .quantity input {
+      width: 50px;
+      height: 30px;
+      text-align: center;
+      font-size: 16px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .summary {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: right;
+      color: #222;
+      border-top: 2px solid #007bff;
+      padding-top: 15px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <h1>Furniture Shopping Cart</h1>
+
+    <form action="add.html" onsubmit="return submitCart()">
+      <!-- Furniture Items -->
+      <div class="item">
+        <span class="item-name"> Dining Table</span>
+        <span class="price" id="price-1">12000</span>
+        <div class="quantity">
+          <button type="button" class="btn" onclick="decreaseQuantity(1)">-</button>
+          <input type="number" id="quantity-1" name="quantity-1" value="1" min="1" onchange="updateSummary()">
+          <button type="button" class="btn" onclick="increaseQuantity(1)">+</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-name">Door </span>
+        <span class="price" id="price-2">5000</span>
+        <div class="quantity">
+          <button type="button" class="btn" onclick="decreaseQuantity(2)">-</button>
+          <input type="number" id="quantity-2" name="quantity-2" value="1" min="1" onchange="updateSummary()">
+          <button type="button" class="btn" onclick="increaseQuantity(2)">+</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-name">Sofa Set</span>
+        <span class="price" id="price-3">5000</span>
+        <div class="quantity">
+          <button type="button" class="btn" onclick="decreaseQuantity(3)">-</button>
+          <input type="number" id="quantity-3" name="quantity-3" value="1" min="1" onchange="updateSummary()">
+          <button type="button" class="btn" onclick="increaseQuantity(3)">+</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-name">Double Bed Frame</span>
+        <span class="price" id="price-4">5000</span>
+        <div class="quantity">
+          <button type="button" class="btn" onclick="decreaseQuantity(4)">-</button>
+          <input type="number" id="quantity-4" name="quantity-4" value="1" min="1" onchange="updateSummary()">
+          <button type="button" class="btn" onclick="increaseQuantity(4)">+</button>
+        </div>
+      </div>
+
+      <div class="item">
+        <span class="item-name">Door with Design</span>
+        <span class="price" id="price-5">5000</span>
+        <div class="quantity">
+          <button type="button" class="btn" onclick="decreaseQuantity(5)">-</button>
+          <input type="number" id="quantity-5" name="quantity-5" value="1" min="1" onchange="updateSummary()">
+          <button type="button" class="btn" onclick="increaseQuantity(5)">+</button>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary" id="cart-summary">
+        Total Items: 5 &nbsp;|&nbsp; Total Price: ₹500
+      </div>
+
+      <!-- Submit Button -->
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const prices = {
+      1: 12000,
+      2: 25000,
+      3: 3500,
+      4: 18000,
+      5: 6000
+    };
+
+    function increaseQuantity(id) {
+      const input = document.getElementById(`quantity-${id}`);
+      input.value = parseInt(input.value) + 1;
+      updateSummary();
+    }
+
+    function decreaseQuantity(id) {
+      const input = document.getElementById(`quantity-${id}`);
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+        updateSummary();
+      }
+    }
+
+    function updateSummary() {
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      for (const id in prices) {
+        const qty = parseInt(document.getElementById(`quantity-${id}`).value);
+        totalItems += qty;
+        totalPrice += qty * prices[id];
+      }
+
+      document.getElementById('cart-summary').innerText = 
+        `Total Items: ${totalItems} | Total Price: ₹${totalPrice.toLocaleString()}`;
+    }
+
+    function submitCart() {
+      let cartDetails = '';
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      for (const id in prices) {
+        const qty = parseInt(document.getElementById(`quantity-${id}`).value);
+        if (!qty || qty < 1) {
+          alert('Quantity must be at least 1');
+          return false;
+        }
+        cartDetails += `Item ${id}: ${qty} × ₹${prices[id]} = ₹${qty * prices[id]}\n`;
+        totalItems += qty;
+        totalPrice += qty * prices[id];
+      }
+
+      cartDetails += `\nTotal Items: ${totalItems}\nTotal Price: ₹${totalPrice.toLocaleString()}`;
+      alert(`Your Cart Summary:\n\n${cartDetails}`);
+      return true;
+    }
+
+    updateSummary();
+  </script>
+</body>
+</html>
